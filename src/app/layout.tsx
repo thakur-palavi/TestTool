@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "@/context/QueryProvider";
+import NavBar from "@/components/NavBar";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +30,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+
+        <QueryProvider>
+          <NavBar />
+          <NextTopLoader
+            color="linear-gradient(to right, #b540f5, #a742f5, #9845f4, #8946f3, #7848f2)"
+            showAtBottom={false}
+          />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
 }
+//  <QueryProvider>
+//         <NavBar />         {children}
+//       </QueryProvider>
